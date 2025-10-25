@@ -6,7 +6,6 @@
   <title>Hệ thống Hỗ trợ Chẩn đoán Bệnh Tim bằng AI</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body { font-family: 'Inter', sans-serif; box-sizing: border-box; }
     .heart-beat { animation: heartbeat 1.5s ease-in-out infinite; }
@@ -26,35 +25,37 @@
 </head>
 
 <body class="bg-gray-50 min-h-full">
+  <!-- Header -->
   <header class="medical-gradient text-white py-8 text-center">
     <div class="flex justify-center items-center mb-4">
       <div class="text-6xl mr-4">🏥</div>
       <div class="heart-beat text-4xl">❤️</div>
     </div>
     <h1 class="text-4xl font-bold mb-4">Hệ thống Hỗ trợ Chẩn đoán Bệnh Tim bằng Trí Tuệ Nhân Tạo</h1>
-    <p class="text-xl text-blue-100">Ứng dụng AI trong hỗ trợ bác sĩ chẩn đoán nguy cơ bệnh tim dựa trên dữ liệu lâm sàng.</p>
+    <p class="text-xl text-blue-100">Ứng dụng AI hỗ trợ bác sĩ phân tích dữ liệu tim mạch.</p>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <!-- Main -->
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
       <!-- Form -->
-      <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-6">
+      <div class="lg:col-span-3 bg-white rounded-xl shadow-lg p-6">
         <h2 class="text-2xl font-semibold mb-6 flex items-center"><span class="mr-3">📋</span>Thông tin bệnh nhân</h2>
         <form id="heartForm" class="space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div><label>Tuổi</label><input type="number" id="age" name="age" class="w-full p-3 border rounded-lg" required></div>
-            <div><label>Giới tính</label><select id="sex" name="sex" class="w-full p-3 border rounded-lg"><option value="1">Nam</option><option value="0">Nữ</option></select></div>
-            <div><label>Loại đau ngực</label><select id="cp" name="cp" class="w-full p-3 border rounded-lg"><option value="0">Không</option><option value="1">Điển hình</option><option value="2">Không điển hình</option><option value="3">Không do tim</option></select></div>
-            <div><label>Huyết áp</label><input type="number" id="trestbps" name="trestbps" class="w-full p-3 border rounded-lg" required></div>
-            <div><label>Cholesterol</label><input type="number" id="chol" name="chol" class="w-full p-3 border rounded-lg" required></div>
-            <div><label>Đường huyết</label><select id="fbs" name="fbs" class="w-full p-3 border rounded-lg"><option value="1">Cao</option><option value="0">Bình thường</option></select></div>
-            <div><label>Điện tâm đồ</label><select id="restecg" name="restecg" class="w-full p-3 border rounded-lg"><option value="0">Bình thường</option><option value="1">ST-T bất thường</option><option value="2">Phì đại thất trái</option></select></div>
-            <div><label>Nhịp tim tối đa</label><input type="number" id="thalach" name="thalach" class="w-full p-3 border rounded-lg" required></div>
-            <div><label>Đau khi vận động</label><select id="exang" name="exang" class="w-full p-3 border rounded-lg"><option value="1">Có</option><option value="0">Không</option></select></div>
-            <div><label>Mức ST chênh</label><input type="number" id="oldpeak" name="oldpeak" class="w-full p-3 border rounded-lg" step="0.1" required></div>
-            <div><label>Dốc ST</label><select id="slope" name="slope" class="w-full p-3 border rounded-lg"><option value="0">Xuống</option><option value="1">Phẳng</option><option value="2">Lên</option></select></div>
-            <div><label>Mạch máu lớn</label><select id="ca" name="ca" class="w-full p-3 border rounded-lg"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div>
-            <div><label>Khiếm khuyết máu (thal)</label><select id="thal" name="thal" class="w-full p-3 border rounded-lg"><option value="1">Bình thường</option><option value="2">Cố định</option><option value="3">Phục hồi</option></select></div>
+            <div><label>Tuổi</label><input type="number" name="age" class="w-full p-3 border rounded-lg" required></div>
+            <div><label>Giới tính</label><select name="sex" class="w-full p-3 border rounded-lg"><option value="1">Nam</option><option value="0">Nữ</option></select></div>
+            <div><label>Loại đau ngực</label><select name="cp" class="w-full p-3 border rounded-lg"><option value="0">Không</option><option value="1">Điển hình</option><option value="2">Không điển hình</option><option value="3">Không do tim</option></select></div>
+            <div><label>Huyết áp (trestbps)</label><input type="number" name="trestbps" class="w-full p-3 border rounded-lg" required></div>
+            <div><label>Cholesterol</label><input type="number" name="chol" class="w-full p-3 border rounded-lg" required></div>
+            <div><label>Đường huyết (fbs)</label><select name="fbs" class="w-full p-3 border rounded-lg"><option value="1">Cao</option><option value="0">Bình thường</option></select></div>
+            <div><label>ECG (restecg)</label><select name="restecg" class="w-full p-3 border rounded-lg"><option value="0">Bình thường</option><option value="1">ST-T bất thường</option><option value="2">Phì đại thất trái</option></select></div>
+            <div><label>Nhịp tim tối đa (thalach)</label><input type="number" name="thalach" class="w-full p-3 border rounded-lg" required></div>
+            <div><label>Đau khi vận động (exang)</label><select name="exang" class="w-full p-3 border rounded-lg"><option value="1">Có</option><option value="0">Không</option></select></div>
+            <div><label>Mức ST chênh (oldpeak)</label><input type="number" step="0.1" name="oldpeak" class="w-full p-3 border rounded-lg" required></div>
+            <div><label>Dốc ST (slope)</label><select name="slope" class="w-full p-3 border rounded-lg"><option value="0">Xuống</option><option value="1">Phẳng</option><option value="2">Lên</option></select></div>
+            <div><label>Mạch máu lớn (ca)</label><select name="ca" class="w-full p-3 border rounded-lg"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div>
+            <div><label>Thal</label><select name="thal" class="w-full p-3 border rounded-lg"><option value="1">Bình thường</option><option value="2">Cố định</option><option value="3">Phục hồi</option></select></div>
           </div>
 
           <div class="text-center pt-6">
@@ -66,33 +67,18 @@
         </form>
       </div>
 
-      <!-- Kết quả -->
-      <div class="lg:col-span-1 bg-white rounded-xl shadow-lg p-6">
+      <!-- Result -->
+      <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-6">
         <h2 class="text-2xl font-semibold mb-4 flex items-center"><span class="mr-3">🔬</span>Kết quả phân tích</h2>
 
         <div id="resultContainer" class="hidden result-card">
-          <div id="resultCard" class="p-6 rounded-lg border-2 mb-6 text-center">
+          <div class="p-6 rounded-lg border mb-6 text-center bg-blue-50">
             <div class="text-4xl mb-4 heart-beat">❤️</div>
-            <div id="resultText" class="text-xl font-semibold mb-4"></div>
-            <div id="probabilityText" class="text-lg text-gray-600 mb-4"></div>
+            <div id="analysisDetails" class="text-left whitespace-pre-line text-gray-700 text-sm leading-relaxed max-h-[600px] overflow-y-auto px-2"></div>
           </div>
-          <div class="mb-6"><canvas id="probabilityChart" width="300" height="200"></canvas></div>
-
-          <!-- Phân tích chi tiết -->
-          <div id="analysisDetails" class="hidden text-left bg-blue-50 p-4 rounded-lg text-sm leading-relaxed">
-            <p><strong>Tình trạng:</strong> <span id="tinhTrang">-</span></p>
-            <p><strong>Nguyên nhân:</strong> <span id="nguyenNhan">-</span></p>
-            <p><strong>Chế độ dinh dưỡng:</strong> <span id="cheDoDinhDuong">-</span></p>
-            <p><strong>Vận động:</strong> <span id="vanDong">-</span></p>
-            <p><strong>Theo dõi:</strong> <span id="theoDoi">-</span></p>
-          </div>
-
-          <button id="exportPdfBtn" class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg mt-4">
-            📄 Xuất báo cáo PDF
-          </button>
         </div>
 
-        <div id="placeholderText" class="text-center text-gray-500 py-12">
+        <div id="placeholderText" class="text-center text-gray-700 py-16">
           <div class="text-6xl mb-4">🔍</div>
           <p>Nhập thông tin và nhấn “Phân tích AI” để xem kết quả</p>
         </div>
@@ -101,107 +87,55 @@
   </main>
 
   <script>
-  let currentChart = null, currentResult = null;
+document.getElementById('heartForm').addEventListener('submit', async e => {
+  e.preventDefault();
 
-  document.getElementById('heartForm').addEventListener('submit', async e => {
-    e.preventDefault();
+  const analyzeBtn = document.getElementById('analyzeBtn');
+  const btnText = document.getElementById('btnText');
+  const loadingSpinner = document.getElementById('loadingSpinner');
+  analyzeBtn.disabled = true;
+  btnText.textContent = 'Đang phân tích...';
+  loadingSpinner.classList.remove('hidden');
 
-    const analyzeBtn = document.getElementById('analyzeBtn');
-    const btnText = document.getElementById('btnText');
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    analyzeBtn.disabled = true;
-    btnText.textContent = 'Đang phân tích...';
-    loadingSpinner.classList.remove('hidden');
+  const formData = new FormData(e.target);
 
-    const formData = new FormData(e.target);
-
-    try {
-      const response = await fetch("/predict", {
-        method: "POST",
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        body: formData
-      });
-      const data = await response.json();
-      console.log("📩 Response backend:", data);
-
-      if (data.success) {
-        displayResult(data.result.prediction, data.result.probability, data.analysis_text);
-      } else {
-        alert("❌ Lỗi: " + (data.error || "Không thể phân tích"));
-      }
-    } catch (err) {
-      console.error("Lỗi request:", err);
-      alert("⚠️ Kết nối tới máy chủ thất bại!");
-    } finally {
-      analyzeBtn.disabled = false;
-      btnText.textContent = 'Phân tích AI';
-      loadingSpinner.classList.add('hidden');
-    }
-  });
-
-  function displayResult(prediction, probability, analysisText) {
-    const resultContainer = document.getElementById('resultContainer');
-    const placeholderText = document.getElementById('placeholderText');
-    const resultCard = document.getElementById('resultCard');
-    const resultText = document.getElementById('resultText');
-    const probabilityText = document.getElementById('probabilityText');
-    const analysisDetails = document.getElementById('analysisDetails');
-
-    placeholderText.classList.add('hidden');
-    resultContainer.classList.remove('hidden');
-
-    resultCard.className = prediction === 1
-      ? 'p-6 rounded-lg border-2 mb-6 border-red-500 bg-red-50'
-      : 'p-6 rounded-lg border-2 mb-6 border-green-500 bg-green-50';
-    resultText.textContent = prediction === 1 ? '⚠️ Có dấu hiệu bệnh tim' : '✅ Không có dấu hiệu bệnh tim';
-    probabilityText.textContent = `Xác suất: ${(probability * 100).toFixed(1)}%`;
-
-    // Parse Gemini AI analysis JSON
-    try {
-      const analysis = JSON.parse(analysisText);
-      document.getElementById('tinhTrang').textContent = analysis.tinh_trang || "-";
-      document.getElementById('nguyenNhan').textContent = analysis.nguyen_nhan || "-";
-      document.getElementById('cheDoDinhDuong').textContent = analysis.che_do_dinh_duong || "-";
-      document.getElementById('vanDong').textContent = analysis.van_dong || "-";
-      document.getElementById('theoDoi').textContent = analysis.theo_doi || "-";
-      analysisDetails.classList.remove('hidden');
-    } catch {
-      console.warn("Phân tích AI không hợp lệ:", analysisText);
-    }
-
-    setTimeout(() => resultContainer.classList.add('show'), 100);
-    createChart(probability);
-  }
-
-  function createChart(probability) {
-    const ctx = document.getElementById('probabilityChart').getContext('2d');
-    if (currentChart) currentChart.destroy();
-    const risk = probability * 100, safe = 100 - risk;
-    currentChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Nguy cơ', 'An toàn'],
-        datasets: [{ data: [risk, safe], backgroundColor: ['#ef4444', '#10b981'] }]
-      },
-      options: { plugins: { legend: { position: 'bottom' } } }
+  try {
+    const res = await fetch("/predict", {
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: formData
     });
-  }
+    const data = await res.json();
+    console.log("📩 Response backend:", data);
 
-  document.getElementById('exportPdfBtn').addEventListener('click', () => {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    doc.setFontSize(14);
-    doc.text("BÁO CÁO PHÂN TÍCH BỆNH TIM", 20, 20);
-    doc.text(`Kết quả: ${document.getElementById('resultText').textContent}`, 20, 35);
-    doc.text(`Xác suất: ${document.getElementById('probabilityText').textContent}`, 20, 45);
-    doc.text("Phân tích AI:", 20, 60);
-    doc.text(`- Tình trạng: ${document.getElementById('tinhTrang').textContent}`, 20, 70);
-    doc.text(`- Nguyên nhân: ${document.getElementById('nguyenNhan').textContent}`, 20, 80);
-    doc.text(`- Dinh dưỡng: ${document.getElementById('cheDoDinhDuong').textContent}`, 20, 90);
-    doc.text(`- Vận động: ${document.getElementById('vanDong').textContent}`, 20, 100);
-    doc.text(`- Theo dõi: ${document.getElementById('theoDoi').textContent}`, 20, 110);
-    doc.save("bao_cao_AI_heart.pdf");
-  });
+    if (data.analysis_text) {
+      showResult(data.analysis_text);
+    } else {
+      alert("❌ Không nhận được phản hồi từ AI!");
+    }
+
+  } catch (err) {
+    console.error("Lỗi:", err);
+    alert("⚠️ Không thể kết nối server!");
+  } finally {
+    analyzeBtn.disabled = false;
+    btnText.textContent = 'Phân tích AI';
+    loadingSpinner.classList.add('hidden');
+  }
+});
+
+function showResult(analysisText) {
+  document.getElementById('placeholderText').classList.add('hidden');
+  const resultContainer = document.getElementById('resultContainer');
+  const analysisDetails = document.getElementById('analysisDetails');
+  resultContainer.classList.remove('hidden');
+  resultContainer.classList.add('show');
+
+  // Hiển thị text với format xuống dòng
+  analysisDetails.innerHTML = analysisText
+    .replace(/\n{2,}/g, "<br><br>")
+    .replace(/\n/g, "<br>");
+}
   </script>
 </body>
 </html>

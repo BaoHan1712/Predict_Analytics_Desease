@@ -23,7 +23,7 @@ def home():
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
-        # 🧩 Nhận dữ liệu từ form
+        # 🧩 Lấy dữ liệu từ form
         user_input = {col: float(request.form[col]) for col in COLUMNS}
         df_input = pd.DataFrame([user_input])
 
@@ -34,7 +34,9 @@ def predict():
         result = {
             "prediction": int(prediction),
             "probability": round(prob * 100, 2),
-            "message": "🧠 Có nguy cơ mắc bệnh tim" if prediction == 1 else "💖 Không có nguy cơ mắc bệnh tim"
+            "message": "🧠 Có nguy cơ mắc bệnh tim"
+            if prediction == 1
+            else "💖 Không có nguy cơ mắc bệnh tim"
         }
 
         print("\n📥 User input:", user_input)
@@ -44,21 +46,12 @@ def predict():
         gemini_text = analyze_with_gemini(user_input, result)
         print("\n🎯 PHÂN TÍCH TỪ GEMINI:\n", gemini_text)
 
-        # 🧱 Đóng gói trả về UI dạng JSON
-        response_data = {
-            "success": True,
-            "result": {
-                "prediction": int(result["prediction"]),
-                "probability": float(result["probability"])
-            },
-            "analysis_text": gemini_text
-        }
+        # 🧱 Gửi trả về UI JSON text
+        response_data = {"analysis_text": gemini_text}
+        return jsonify(response_data)
 
-        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-            return jsonify(response_data)
-        else:
-            return render_template("index.html")
     except Exception as e:
+        print("❌ Lỗi:", e)
         return jsonify({"success": False, "error": str(e)})
 
 if __name__ == "__main__":
