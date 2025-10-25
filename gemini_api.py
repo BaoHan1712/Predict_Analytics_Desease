@@ -5,7 +5,7 @@ from langchain_core.messages import HumanMessage
 from rule_prompt import BASE_RULES  # 🔥 import quy tắc nền
 
 # --- Cấu hình API ---
-os.environ["GOOGLE_API_KEY"] = "AIzaSyC2yA-VkIroULlcEkcb3yAIH7haoqLo91w"
+os.environ["GOOGLE_API_KEY"] = "YOUR_GOOGLE_API_KEY_HERE"  # Thay bằng API key của bạn
 
 # --- Khởi tạo model Gemini ---
 chat = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
@@ -54,13 +54,13 @@ Trả về **văn bản thuần túy**, không định dạng JSON, không thêm
         )
 
 
-# --- Test nhanh ---
-if __name__ == "__main__":
-    sample_user = {
-        "age": 23.0, "sex": 1.0, "cp": 1.0, "trestbps": 123.0,
-        "chol": 123.0, "fbs": 1.0, "restecg": 1.0, "thalach": 123.0,
-        "exang": 1.0, "oldpeak": 1.0, "slope": 0.0, "ca": 1.0, "thal": 2.0
-    }
-    result = {"message": "🧠 Nguy cơ bệnh tim nhẹ", "probability": 42.7}
-    text = analyze_with_gemini(sample_user, result)
-    print("\n🎯 PHÂN TÍCH TỪ GEMINI:\n", text)
+# # --- Test nhanh ---
+# if __name__ == "__main__":
+#     sample_user = {
+#         "age": 23.0, "sex": 1.0, "cp": 1.0, "trestbps": 123.0,
+#         "chol": 123.0, "fbs": 1.0, "restecg": 1.0, "thalach": 123.0,
+#         "exang": 1.0, "oldpeak": 1.0, "slope": 0.0, "ca": 1.0, "thal": 2.0
+#     }
+#     result = {"message": "🧠 Nguy cơ bệnh tim nhẹ", "probability": 42.7}
+#     text = analyze_with_gemini(sample_user, result)
+#     print("\n🎯 PHÂN TÍCH TỪ GEMINI:\n", text)
